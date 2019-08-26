@@ -12,7 +12,7 @@ int main() {
     printf("%f", f);
 
     // intenger %i OU %d
-    // float / double %f
+    // float / double %f  
     // char %c
     // string %s
     // %u módulo de um numero
