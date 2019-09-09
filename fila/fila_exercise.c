@@ -76,7 +76,8 @@ int main() {
         scanf("%d", &id.chave);
         excluirDaFila(&f, &id);
     }
-    
+    exibirFila(%f);
+
     getchar();
     return 0;
 }
