@@ -2,11 +2,8 @@
 #include <malloc.h>
 #include <stdlib.h>
 
-typedef int TIPOCHAVE;
-
 typedef struct dado {
-    TIPOCHAVE chave;
-    //outros campos...
+    int chave;
 } REGISTRO;
 
 typedef struct aux {
@@ -35,8 +32,8 @@ int tamanho(FILA* f) {
 }
 
 void exibirFila(FILA* f) {
-    PONT end = f->inicio;
-    printf("Fila: \"");
+    ELEMENTO * end = f->inicio;
+    printf("Fila: \" ");
     while(end != NULL) {
         printf("%i ", end->reg.chave);
         end = end->prox;
@@ -46,7 +43,7 @@ void exibirFila(FILA* f) {
 
 int inserirNaFila(FILA* f, REGISTRO* reg) {
     PONT novo = (PONT)malloc(sizeof(ELEMENTO));
-    novo->reg = reg;
+    novo->reg.chave = reg->chave;
     novo->prox = NULL;
     if(f->inicio==NULL) f->inicio=novo;
     else f->fim->prox = novo;
@@ -66,16 +63,20 @@ int excluirDaFila(FILA* f, REGISTRO* reg) {
 
 int main() {
     FILA f;
-    int resp, id;
+    REGISTRO id;
+    int resp;
     inicializarFila(&f);
     scanf("%d", &resp);
     for(int i=0;i<resp;i++) {
-        scanf("%d", &id);
-        inserirNaFila(&f, id);
+        scanf("%d", &id.chave);
+        inserirNaFila(&f, &id);
     }
-    exibirFila(&f);
-
-
+    scanf("%d", &resp);
+    for(int i=0;i<resp;i++) {
+        scanf("%d", &id.chave);
+        excluirDaFila(&f, &id);
+    }
+    
     getchar();
     return 0;
 }
