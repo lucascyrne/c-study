@@ -52,11 +52,21 @@ int inserirNaFila(FILA* f, REGISTRO* reg) {
 }
 
 int excluirDaFila(FILA* f, REGISTRO* reg) {
+    ELEMENTO *volta;
+    ELEMENTO *end;
     if(f->inicio==NULL) return 0;
-    *reg = f->inicio->reg;
-    PONT apagar = f->inicio;
-    f->inicio = f->inicio->prox;
-    free(apagar);
+    while(end != NULL) {
+        if(end->reg == *reg) {
+            if(volta == NULL) {
+                volta.inicio = volta->prox;
+            }
+            volta->prox = end->prox;
+            end->prox = NULL;
+        }
+        volta = end;
+        end = end->prox;
+        break
+    }
     if(f->inicio == NULL) f->fim = NULL;
     return 0;
 }
@@ -76,8 +86,8 @@ int main() {
         scanf("%d", &id.chave);
         excluirDaFila(&f, &id);
     }
-    exibirFila(%f);
+    exibirFila(&f);
 
     getchar();
     return 0;
-}
+} 
