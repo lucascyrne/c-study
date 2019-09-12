@@ -33,9 +33,8 @@ char comparaString() {
 }
 
 int main(int argc, char *argv[]) {
-    argc = 3;
-    p1 = argv[2];
-    p2 = argv[3];
+    p1 = argv[1];
+    p2 = argv[2];
     res = comparaString(p1, p2);    
-    printf("%i", res);
+    printf("%i\n", res);
 }
