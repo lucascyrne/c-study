@@ -28,7 +28,7 @@ int main(){
 				for (c = 0; c < m; c++) {
 						for (d = 0; d < q; d++) {
 								for (k = 0; k < p; k++) {
-										sum = sum + first[c][k]*second[k][d];
+										sum += first[c][k]*second[k][d];
 								}
 								multiply[c][d] = sum;
 								sum = 0;
