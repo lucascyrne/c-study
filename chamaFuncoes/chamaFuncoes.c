@@ -24,7 +24,7 @@ char funcaoCinco() {
 
 void main() {
 
-        char(*funcoes[4]) = {funcaoUm, funcaoDois, funcaoTres, funcaoQuatro, funcaoCinco}
+        char(*funcoes[4]) = {funcaoUm, funcaoDois, funcaoTres, funcaoQuatro, funcaoCinco})
 
         printf("Digite um numero de 1 a 5: ");
         scanf("%i", int resp);
