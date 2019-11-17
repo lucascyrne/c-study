@@ -2,22 +2,23 @@
 #include<stdlib.h>
 
 struct leaf {
-        int data;
+        int data, height;
         struct leaf *left;
         struct leaf *right;
         struct leaf *pai;
 };
 
-struct leaf* newLeaf(int data) {
+struct leaf *newLeaf(int data) {
         struct leaf* newLeaf = (struct leaf *)malloc(sizeof(struct leaf));
         newLeaf->data = data;
         newLeaf->left = NULL;
         newLeaf->right = NULL;
+        newLeaf->height = 0;
 
         return newLeaf;
 };
 
-struct leaf *tree(int data, struct leaf* esq, struct leaf* dir) {
+/* struct leaf *tree(int data, struct leaf *esq, struct leaf *dir) {
         struct leaf *raiz;
 
         raiz = (struct leaf *)malloc(sizeof(struct leaf));
@@ -28,7 +29,7 @@ struct leaf *tree(int data, struct leaf* esq, struct leaf* dir) {
         dir->pai = raiz;
 
         return raiz;
-}
+} */
 
 struct leaf *insert(struct leaf *raiz, int data) {
 
@@ -57,8 +58,8 @@ struct leaf *search(struct leaf *raiz, int data) {
         }
 }
 
-int preOrd(struct leaf *raiz);
-
+int posOrd(struct leaf *raiz);
+int treeHeight(struct leaf *raiz);
 
 
 int main() {
@@ -69,18 +70,43 @@ int main() {
         insert(raiz, 20);
         insert(raiz, 70);
 
-        preOrd(raiz);
+        posOrd(raiz);
+        treeHeight(raiz);
 
         getchar();
         return 0;
 
 }
 
-int preOrd(struct leaf *raiz) {
+int posOrd(struct leaf *raiz) {
         if(raiz != NULL) {
+                if(raiz->left) {
+                        posOrd(raiz->left);
+                } else {
+                        posOrd(raiz->right);
+                }                
                 printf("%i ", raiz->data);
-                preOrd(raiz->left);
-                preOrd(raiz->right);
         }
-};
+}
+
+
+int treeHeight(struct leaf *raiz) {
+        if(raiz == NULL) {
+                return 0;
+        } else {
+                return raiz->height;
+        }
+}
+
+int updateHeight(struct leaf *raiz) {
+        int hright, hleft;
+        if(raiz != NULL) {
+                hright = treeHeight(raiz->right);
+                hleft = treeHeight(raiz->left);
+                raiz->height = max(hright, hleft) + 1;
+        }
+}
+
+
+
 
